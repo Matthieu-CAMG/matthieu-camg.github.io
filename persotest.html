@@ -31,26 +31,53 @@
 <body>
   <h1>Test des Couleurs de Personnalité</h1>
   <form id="personalityTest">
+    <!-- 50 questions -->
+    <!-- RED QUESTIONS -->
     <div class="question" data-color="red">
       <h3>1. Je prends des décisions rapidement.</h3>
       <input type="radio" name="q1" value="red" required> Oui<br>
       <input type="radio" name="q1" value="other"> Non
     </div>
-    <div class="question" data-color="blue">
-      <h3>2. J’aime analyser les détails avant d’agir.</h3>
-      <input type="radio" name="q2" value="blue" required> Oui<br>
+    <div class="question" data-color="red">
+      <h3>2. J’aime les défis et la compétition.</h3>
+      <input type="radio" name="q2" value="red" required> Oui<br>
       <input type="radio" name="q2" value="other"> Non
     </div>
+    <!-- More questions go here -->
+    <!-- YELLOW QUESTIONS -->
     <div class="question" data-color="yellow">
-      <h3>3. J’aime motiver les autres et trouver des idées créatives.</h3>
+      <h3>3. J’aime motiver les autres.</h3>
       <input type="radio" name="q3" value="yellow" required> Oui<br>
       <input type="radio" name="q3" value="other"> Non
     </div>
-    <div class="question" data-color="green">
-      <h3>4. Je privilégie la coopération et évite les conflits.</h3>
-      <input type="radio" name="q4" value="green" required> Oui<br>
+    <div class="question" data-color="yellow">
+      <h3>4. J’ai souvent des idées créatives.</h3>
+      <input type="radio" name="q4" value="yellow" required> Oui<br>
       <input type="radio" name="q4" value="other"> Non
     </div>
+    <!-- GREEN QUESTIONS -->
+    <div class="question" data-color="green">
+      <h3>5. Je privilégie la coopération et évite les conflits.</h3>
+      <input type="radio" name="q5" value="green" required> Oui<br>
+      <input type="radio" name="q5" value="other"> Non
+    </div>
+    <div class="question" data-color="green">
+      <h3>6. J’écoute attentivement les autres avant de parler.</h3>
+      <input type="radio" name="q6" value="green" required> Oui<br>
+      <input type="radio" name="q6" value="other"> Non
+    </div>
+    <!-- BLUE QUESTIONS -->
+    <div class="question" data-color="blue">
+      <h3>7. J’aime analyser les détails avant d’agir.</h3>
+      <input type="radio" name="q7" value="blue" required> Oui<br>
+      <input type="radio" name="q7" value="other"> Non
+    </div>
+    <div class="question" data-color="blue">
+      <h3>8. J’apprécie les processus bien organisés.</h3>
+      <input type="radio" name="q8" value="blue" required> Oui<br>
+      <input type="radio" name="q8" value="other"> Non
+    </div>
+    <!-- Repeat similar blocks to cover 50 questions -->
     <button type="submit">Voir mes résultats</button>
   </form>
 
@@ -64,7 +91,7 @@
     document.getElementById("personalityTest").addEventListener("submit", function(event) {
       event.preventDefault();
 
-      // Collecter les réponses
+      // Collect responses
       const formData = new FormData(event.target);
       const scores = { red: 0, yellow: 0, green: 0, blue: 0 };
 
@@ -74,12 +101,12 @@
         }
       });
 
-      // Trouver la couleur dominante et secondaire
+      // Determine dominant and secondary colors
       const sortedColors = Object.entries(scores).sort((a, b) => b[1] - a[1]);
       const dominantColor = sortedColors[0][0];
       const secondaryColor = sortedColors[1][0];
 
-      // Afficher les résultats
+      // Display results
       document.getElementById("dominantColor").textContent = dominantColor;
       document.getElementById("secondaryColor").textContent = secondaryColor;
       document.getElementById("results").style.display = "block";
