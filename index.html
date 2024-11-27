@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Billiard DSI ALL STARS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            position: relative;
+        }
+        input, select, button {
+            margin: 5px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #aaa;
+            padding: 8px;
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .unranked {
+            background-color: #f9f9f9;
+            color: #888;
+        }
+        .delete-button, .edit-button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .delete-button:hover, .edit-button:hover {
+            background-color: #ff1a1a;
+        }
+        .reset-button, .export-button, .import-button {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .reset-button:hover, .export-button:hover, .import-button:hover {
+            background-color: #333;
+        }
+        /* Styles pour le bouton "Règles" */
+        .rules-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        .rules-button:hover {
+            background-color: #0056b3;
+        }
+        /* Styles pour le pop-up des règles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            max-width: 600px;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .rules-list {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .rules-list li {
+            margin-bottom: 10px;
+        }
+        /* Styles pour le formulaire de modification */
+        .edit-form {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .edit-form-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%;
+            max-width: 500px;
+        }
+        .edit-form-content h2 {
+            margin-top: 0;
+        }
+        .edit-form-content label {
+            display: block;
+            margin-top: 10px;
+        }
+        .edit-form-content input, .edit-form-content select {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+        .edit-form-content button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Bouton "Règles" -->
+<button class="rules-button" onclick="openModal()">Règles</button>
+
+<h1>Billiard DSI ALL STARS</h1>
+
+<div class="section">
+    <h2>Ajouter des Joueurs</h2>
+    <input type="text" id="playerName" placeholder="Pseudo du joueur">
+    <button onclick="addPlayer()">Ajouter le joueur</button>
+</div>
+
+<div class="section">
+    <h2>Liste des Joueurs</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Joueur</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="playerList">
+            <!-- La liste des joueurs sera insérée ici -->
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h2>Entrer un Résultat de Match</h2>
+    <select id="player1">
+        <option value="">Sélectionnez le Joueur 1</option>
+    </select>
+    <select id="player2">
+        <option value="">Sélectionnez le Joueur 2</option>
+    </select>
+    <select id="result">
+        <option value="">Résultat</option>
+        <option value="1">Victoire de Joueur 1</option>
+        <option value="0.5">Match nul</option>
+        <option value="0">Victoire de Joueur 2</option>
+    </select>
+    <button onclick="addMatch()">Enregistrer le match</button>
+</div>
+
+<div class="section">
+    <h2>Classement Actuel</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Joueur</th>
+                <th>Classement Elo</th>
+                <th>Parties Jouées</th>
+                <th>Parties Gagnées</th> <!-- Nouvelle colonne -->
+            </tr>
+        </thead>
+        <tbody id="rankingTable">
+            <!-- Les données du classement seront insérées ici -->
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h2>Historique des Matchs</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Joueur 1</th>
+                <th>Joueur 2</th>
+                <th>Résultat</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="matchHistory">
+            <!-- L'historique des matchs sera inséré ici -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Boutons pour exporter et importer les données -->
+<div class="section">
+    <button class="export-button" onclick="exportData()">Exporter les Données</button>
+    <button class="import-button" onclick="document.getElementById('importFile').click()">Importer les Données</button>
+    <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+</div>
+
+<!-- Bouton pour réinitialiser les données -->
+<div class="section">
+    <button class="reset-button" onclick="resetData()">Réinitialiser les Données</button>
+</div>
+
+<!-- Pop-up des Règles -->
+<div id="rulesModal" class="modal">
+    <div class="modal-content">
+        <button class="close-button" onclick="closeModal()">&times;</button>
+        <h2>Règles du Jeu</h2>
+        <ul class="rules-list">
+            <li>Si une boule de l'adversaire est rentrée : l'adversaire joue simple.</li>
+            <li>Si une boule de l'adversaire est touchée avant sa boule : l'adversaire joue 2 fois.</li>
+            <li>Si le joueur bénéficie de 2 coups et qu'il rentre une boule, il ne joue que 2 fois, sauf s'il rentre une boule.</li>
+            <li>Celui qui rentre la noire sans être à la fin perd.</li>
+            <li>Celui qui rentre la noire et la blanche en fin de partie perd.</li>
+            <li>Celui qui rentre la noire en direct perd.</li>
+            <li>En fin de partie, la noire doit être rentrée dans le dernier trou ou la dernière boule a été rentrée</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Formulaire de modification des matchs -->
+<div id="editMatchModal" class="edit-form">
+    <div class="edit-form-content">
+        <button class="close-button" onclick="closeEditModal()">&times;</button>
+        <h2>Modifier le Match</h2>
+        <label for="editPlayer1">Joueur 1</label>
+        <select id="editPlayer1">
+            <!-- Options de joueurs seront insérées ici -->
+        </select>
+        <label for="editPlayer2">Joueur 2</label>
+        <select id="editPlayer2">
+            <!-- Options de joueurs seront insérées ici -->
+        </select>
+        <label for="editResult">Résultat</label>
+        <select id="editResult">
+            <option value="">Résultat</option>
+            <option value="1">Victoire de Joueur 1</option>
+            <option value="0.5">Match nul</option>
+            <option value="0">Victoire de Joueur 2</option>
+        </select>
+        <button onclick="saveEditedMatch()">Enregistrer les Modifications</button>
+    </div>
+</div>
+
+<script>
+    let players = {};
+    let matches = [];
+    let currentEditIndex = null;
+
+    // Charger les données depuis le LocalStorage
+    window.onload = function() {
+        if (localStorage.getItem('players')) {
+            players = JSON.parse(localStorage.getItem('players'));
+        }
+        if (localStorage.getItem('matches')) {
+            matches = JSON.parse(localStorage.getItem('matches'));
+        }
+        updatePlayerSelect();
+        updatePlayerList();
+        recalculateRatings();
+        updateRankingTable();
+        updateMatchHistory();
+    };
+
+    function saveData() {
+        localStorage.setItem('players', JSON.stringify(players));
+        localStorage.setItem('matches', JSON.stringify(matches));
+    }
+
+    function addPlayer() {
+        const name = document.getElementById('playerName').value.trim();
+        if (name && !players[name]) {
+            players[name] = {
+                name: name,
+                rating: 1000,
+                matches: 0,
+                wins: 0  // Nouvelle propriété pour les victoires
+            };
+            updatePlayerSelect();
+            updatePlayerList();
+            updateRankingTable();
+            saveData();
+            document.getElementById('playerName').value = '';
+        } else {
+            alert('Le joueur existe déjà ou le pseudo est invalide.');
+        }
+    }
+
+    function deletePlayer(playerName) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer le joueur ' + playerName + ' ? Cela supprimera également tous ses matchs.')) {
+            // Supprimer le joueur
+            delete players[playerName];
+
+            // Supprimer les matchs impliquant ce joueur
+            matches = matches.filter(match => match.player1 !== playerName && match.player2 !== playerName);
+
+            // Mettre à jour les sélections de joueurs et la liste des joueurs
+            updatePlayerSelect();
+            updatePlayerList();
+
+            // Recalculer les classements
+            recalculateRatings();
+            updateRankingTable();
+            updateMatchHistory();
+            saveData();
+        }
+    }
+
+    function updatePlayerList() {
+        const tbody = document.getElementById('playerList');
+        tbody.innerHTML = '';
+
+        for (let playerName in players) {
+            const tr = document.createElement('tr');
+            const tdName = document.createElement('td');
+            const tdAction = document.createElement('td');
+
+            tdName.textContent = playerName;
+
+            // Bouton de suppression
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Supprimer';
+            deleteButton.className = 'delete-button';
+            deleteButton.onclick = function() {
+                deletePlayer(playerName);
+            };
+            tdAction.appendChild(deleteButton);
+
+            tr.appendChild(tdName);
+            tr.appendChild(tdAction);
+            tbody.appendChild(tr);
+        }
+    }
+
+    function updatePlayerSelect() {
+        const playerSelects = [document.getElementById('player1'), document.getElementById('player2'), document.getElementById('editPlayer1'), document.getElementById('editPlayer2')];
+        playerSelects.forEach(select => {
+            if (!select) return;
+            // Sauvegarder la sélection actuelle
+            const currentSelection = select.value;
+            // Réinitialiser les options
+            select.innerHTML = '<option value="">Sélectionnez un joueur</option>';
+            // Ajouter les joueurs
+            for (let player in players) {
+                const option = document.createElement('option');
+                option.value = players[player].name;
+                option.textContent = players[player].name;
+                select.appendChild(option);
+            }
+            // Restaurer la sélection si possible
+            select.value = currentSelection;
+        });
+    }
+
+    function addMatch() {
+        const player1Name = document.getElementById('player1').value;
+        const player2Name = document.getElementById('player2').value;
+        const result = parseFloat(document.getElementById('result').value);
+
+        if (player1Name && player2Name && !isNaN(result) && player1Name !== player2Name) {
+            // Enregistrer le match dans l'historique
+            matches.push({
+                player1: player1Name,
+                player2: player2Name,
+                result: result
+            });
+
+            recalculateRatings();
+            updateRankingTable();
+            updateMatchHistory();
+            saveData();
+
+            // Réinitialiser les sélections
+            document.getElementById('player1').value = '';
+            document.getElementById('player2').value = '';
+            document.getElementById('result').value = '';
+        } else {
+            alert('Veuillez sélectionner deux joueurs différents et un résultat.');
+        }
+    }
+
+    function deleteMatch(index) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer ce match ?')) {
+            matches.splice(index, 1);
+            recalculateRatings();
+            updateRankingTable();
+            updateMatchHistory();
+            saveData();
+        }
+    }
+
+    function editMatch(index) {
+        currentEditIndex = index;
+        const match = matches[index];
+
+        // Ouvrir le formulaire de modification avec les valeurs actuelles
+        document.getElementById('editPlayer1').value = match.player1;
+        document.getElementById('editPlayer2').value = match.player2;
+        document.getElementById('editResult').value = match.result;
+
+        document.getElementById('editMatchModal').style.display = 'block';
+    }
+
+    function saveEditedMatch() {
+        const player1Name = document.getElementById('editPlayer1').value;
+        const player2Name = document.getElementById('editPlayer2').value;
+        const result = parseFloat(document.getElementById('editResult').value);
+
+        if (player1Name && player2Name && !isNaN(result) && player1Name !== player2Name) {
+            // Mettre à jour le match dans l'historique
+            matches[currentEditIndex] = {
+                player1: player1Name,
+                player2: player2Name,
+                result: result
+            };
+
+            recalculateRatings();
+            updateRankingTable();
+            updateMatchHistory();
+            saveData();
+
+            // Fermer le formulaire de modification
+            closeEditModal();
+        } else {
+            alert('Veuillez sélectionner deux joueurs différents et un résultat valide.');
+        }
+    }
+
+    function closeEditModal() {
+        document.getElementById('editMatchModal').style.display = 'none';
+    }
+
+    function recalculateRatings() {
+        // Réinitialiser les données des joueurs
+        for (let player in players) {
+            players[player].rating = 1000;
+            players[player].matches = 0;
+            players[player].wins = 0;  // Réinitialiser les victoires
+        }
+
+        // Recalculer les classements Elo en fonction de l'historique des matchs
+        matches.forEach(match => {
+            const player1 = players[match.player1];
+            const player2 = players[match.player2];
+            const result = match.result;
+
+            const k = 32; // Facteur K standard
+            const expectedScore1 = 1 / (1 + Math.pow(10, (player2.rating - player1.rating) / 400));
+
+            player1.rating += k * (result - expectedScore1);
+            player2.rating += k * ((1 - result) - (1 - expectedScore1));
+
+            player1.matches += 1;
+            player2.matches += 1;
+
+            // Calculer les victoires
+            if (result === 1) {
+                player1.wins += 1;
+            } else if (result === 0) {
+                player2.wins += 1;
+            }
+            // Les matchs nuls ne sont pas comptés comme des victoires
+        });
+    }
+
+    function updateRankingTable() {
+        const tbody = document.getElementById('rankingTable');
+        tbody.innerHTML = '';
+
+        // Créer un tableau à partir de l'objet players
+        const playersArray = Object.values(players);
+
+        // Séparer les joueurs en deux groupes
+        const rankedPlayers = playersArray.filter(player => player.matches >= 10);
+        const unrankedPlayers = playersArray.filter(player => player.matches < 10);
+
+        // Trier les joueurs classés par classement Elo décroissant
+        rankedPlayers.sort((a, b) => b.rating - a.rating);
+
+        // Afficher les joueurs classés avec leur position
+        rankedPlayers.forEach((player, index) => {
+            const tr = document.createElement('tr');
+            const tdPosition = document.createElement('td');
+            const tdName = document.createElement('td');
+            const tdRating = document.createElement('td');
+            const tdMatches = document.createElement('td');
+            const tdWins = document.createElement('td');  // Nouvelle cellule pour les victoires
+
+            tdPosition.textContent = index + 1; // Position dans le classement
+            tdName.textContent = player.name;
+            tdRating.textContent = Math.round(player.rating);
+            tdMatches.textContent = player.matches;
+            tdWins.textContent = player.wins;  // Afficher le nombre de victoires
+
+            tr.appendChild(tdPosition);
+            tr.appendChild(tdName);
+            tr.appendChild(tdRating);
+            tr.appendChild(tdMatches);
+            tr.appendChild(tdWins);  // Ajouter la cellule au tableau
+            tbody.appendChild(tr);
+        });
+
+        // Afficher les joueurs non classés sans position
+        unrankedPlayers.forEach((player) => {
+            const tr = document.createElement('tr');
+            tr.classList.add('unranked'); // Style différent pour les non classés
+            const tdPosition = document.createElement('td');
+            const tdName = document.createElement('td');
+            const tdRating = document.createElement('td');
+            const tdMatches = document.createElement('td');
+            const tdWins = document.createElement('td');  // Nouvelle cellule pour les victoires
+
+            tdPosition.textContent = '—'; // Pas de position
+            tdName.textContent = player.name + ' (Non classé)';
+            tdRating.textContent = Math.round(player.rating);
+            tdMatches.textContent = player.matches;
+            tdWins.textContent = player.wins;  // Afficher le nombre de victoires
+
+            tr.appendChild(tdPosition);
+            tr.appendChild(tdName);
+            tr.appendChild(tdRating);
+            tr.appendChild(tdMatches);
+            tr.appendChild(tdWins);  // Ajouter la cellule au tableau
+            tbody.appendChild(tr);
+        });
+    }
+
+    function updateMatchHistory() {
+        const tbody = document.getElementById('matchHistory');
+        tbody.innerHTML = '';
+
+        matches.forEach((match, index) => {
+            const tr = document.createElement('tr');
+            const tdPlayer1 = document.createElement('td');
+            const tdPlayer2 = document.createElement('td');
+            const tdResult = document.createElement('td');
+            const tdAction = document.createElement('td');
+
+            tdPlayer1.textContent = match.player1;
+            tdPlayer2.textContent = match.player2;
+
+            let resultText = '';
+            if (match.result === 1) {
+                resultText = 'Victoire de ' + match.player1;
+            } else if (match.result === 0.5) {
+                resultText = 'Match nul';
+            } else if (match.result === 0) {
+                resultText = 'Victoire de ' + match.player2;
+            }
+
+            tdResult.textContent = resultText;
+
+            // Bouton de modification
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Modifier';
+            editButton.className = 'edit-button';
+            editButton.onclick = function() {
+                editMatch(index);
+            };
+            tdAction.appendChild(editButton);
+
+            // Bouton de suppression
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Supprimer';
+            deleteButton.className = 'delete-button';
+            deleteButton.onclick = function() {
+                deleteMatch(index);
+            };
+            tdAction.appendChild(deleteButton);
+
+            tr.appendChild(tdPlayer1);
+            tr.appendChild(tdPlayer2);
+            tr.appendChild(tdResult);
+            tr.appendChild(tdAction);
+            tbody.appendChild(tr);
+        });
+    }
+
+    // Fonction pour réinitialiser toutes les données
+    function resetData() {
+        if (confirm('Êtes-vous sûr de vouloir réinitialiser toutes les données ? Cette action est irréversible.')) {
+            // Supprimer les données du localStorage
+            localStorage.removeItem('players');
+            localStorage.removeItem('matches');
+
+            // Réinitialiser les variables locales
+            players = {};
+            matches = [];
+
+            // Mettre à jour l'interface
+            updatePlayerSelect();
+            updatePlayerList();
+            updateRankingTable();
+            updateMatchHistory();
+
+            alert('Toutes les données ont été réinitialisées.');
+        }
+    }
+
+    // Fonctions pour le pop-up des règles
+    function openModal() {
+        document.getElementById('rulesModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('rulesModal').style.display = 'none';
+    }
+
+    // Fermer le modal si on clique en dehors du contenu
+    window.onclick = function(event) {
+        const modal = document.getElementById('rulesModal');
+        const editModal = document.getElementById('editMatchModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+        if (event.target === editModal) {
+            editModal.style.display = 'none';
+        }
+    };
+
+    // Fonction pour exporter les données
+    function exportData() {
+        const dataStr = JSON.stringify({ players, matches });
+        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(dataBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'donnees_billard.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    // Fonction pour importer les données
+    function importData(event) {
+        const file = event.target.files[0];
+        if (!file) {
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const data = JSON.parse(e.target.result);
+                if (data.players && data.matches) {
+                    players = data.players;
+                    matches = data.matches;
+                    saveData();
+                    updatePlayerSelect();
+                    updatePlayerList();
+                    recalculateRatings();
+                    updateRankingTable();
+                    updateMatchHistory();
+                    alert('Les données ont été importées avec succès.');
+                } else {
+                    alert('Le fichier ne contient pas de données valides.');
+                }
+            } catch (error) {
+                alert('Erreur lors de l\'importation des données : ' + error.message);
+            }
+        };
+        reader.readAsText(file);
+    }
+</script>
+
+</body>
+</html>
