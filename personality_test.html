@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +9,10 @@
       font-family: Arial, sans-serif;
       margin: 20px;
     }
-    .question {
+    .section {
       margin-bottom: 20px;
     }
-    .question h3 {
+    .section h3 {
       margin-bottom: 10px;
     }
     .results {
@@ -31,346 +30,128 @@
 <body>
   <h1>Test des Couleurs de Personnalité</h1>
   <form id="personalityTest">
-
-    <div class="question" data-color="red">
-      <h3>1. Je prends des décisions rapidement.</h3>
-      <input type="radio" name="q1" value="red" required> Oui<br>
-      <input type="radio" name="q1" value="other"> Non
+    <!-- Section 1 -->
+    <div class="section">
+      <h3>1. Face à une situation imprévue, je préfère...</h3>
+      <input type="radio" name="q1" value="red" required> A. Prendre des décisions rapidement et aller de l’avant.<br>
+      <input type="radio" name="q1" value="green"> B. Rassurer tout le monde et garder une ambiance calme.<br>
+      <input type="radio" name="q1" value="blue"> C. Analyser les faits avant de décider quoi faire.<br>
+      <input type="radio" name="q1" value="yellow"> D. Trouver des solutions créatives et encourager les autres.
     </div>
-
-    <div class="question" data-color="red">
-      <h3>2. J’aime les défis et la compétition.</h3>
-      <input type="radio" name="q2" value="red" required> Oui<br>
-      <input type="radio" name="q2" value="other"> Non
+    <!-- Section 2 -->
+    <div class="section">
+      <h3>2. Quand je travaille en équipe, je suis...</h3>
+      <input type="radio" name="q2" value="red" required> A. Focalisé sur les objectifs et les résultats.<br>
+      <input type="radio" name="q2" value="green"> B. Attentif aux besoins et aux émotions des autres.<br>
+      <input type="radio" name="q2" value="blue"> C. Organisé et soucieux des détails.<br>
+      <input type="radio" name="q2" value="yellow"> D. Dynamique et enthousiaste.
     </div>
-
-    <div class="question" data-color="red">
-      <h3>3. Je préfère être en charge des projets.</h3>
-      <input type="radio" name="q3" value="red" required> Oui<br>
-      <input type="radio" name="q3" value="other"> Non
+    <!-- Section 3 -->
+    <div class="section">
+      <h3>3. Je suis motivé par...</h3>
+      <input type="radio" name="q3" value="red" required> A. Les défis et la prise de responsabilités.<br>
+      <input type="radio" name="q3" value="green"> B. L’harmonie et les relations solides.<br>
+      <input type="radio" name="q3" value="blue"> C. La précision et la logique.<br>
+      <input type="radio" name="q3" value="yellow"> D. Les nouvelles idées et l’innovation.
     </div>
-
-    <div class="question" data-color="red">
-      <h3>4. Je suis motivé par les résultats.</h3>
-      <input type="radio" name="q4" value="red" required> Oui<br>
-      <input type="radio" name="q4" value="other"> Non
+    <!-- Section 4 -->
+    <div class="section">
+      <h3>4. Face à un conflit, je préfère...</h3>
+      <input type="radio" name="q4" value="red" required> A. Prendre les choses en main pour résoudre rapidement le problème.<br>
+      <input type="radio" name="q4" value="green"> B. Trouver un compromis pour que tout le monde soit satisfait.<br>
+      <input type="radio" name="q4" value="blue"> C. Analyser calmement les causes et les solutions possibles.<br>
+      <input type="radio" name="q4" value="yellow"> D. Désamorcer la situation avec une approche positive et optimiste.
     </div>
-
-    <div class="question" data-color="red">
-      <h3>5. J’ai une approche directe dans la communication.</h3>
-      <input type="radio" name="q5" value="red" required> Oui<br>
-      <input type="radio" name="q5" value="other"> Non
+    <!-- Section 5 -->
+    <div class="section">
+      <h3>5. Ce qui me décrit le mieux est...</h3>
+      <input type="radio" name="q5" value="red" required> A. Direct, compétitif, orienté vers les résultats.<br>
+      <input type="radio" name="q5" value="green"> B. Patient, empathique, attentif aux autres.<br>
+      <input type="radio" name="q5" value="blue"> C. Méticuleux, réfléchi, méthodique.<br>
+      <input type="radio" name="q5" value="yellow"> D. Créatif, sociable, plein d’énergie.
     </div>
-
-    <div class="question" data-color="red">
-      <h3>6. Je suis à l’aise dans les situations de stress.</h3>
-      <input type="radio" name="q6" value="red" required> Oui<br>
-      <input type="radio" name="q6" value="other"> Non
-    </div>
-
-    <div class="question" data-color="red">
-      <h3>7. J’aime le contrôle et la prise de décisions.</h3>
-      <input type="radio" name="q7" value="red" required> Oui<br>
-      <input type="radio" name="q7" value="other"> Non
-    </div>
-
-    <div class="question" data-color="red">
-      <h3>8. Je préfère agir rapidement plutôt que réfléchir longtemps.</h3>
-      <input type="radio" name="q8" value="red" required> Oui<br>
-      <input type="radio" name="q8" value="other"> Non
-    </div>
-
-    <div class="question" data-color="red">
-      <h3>9. Je prends des initiatives sans hésiter.</h3>
-      <input type="radio" name="q9" value="red" required> Oui<br>
-      <input type="radio" name="q9" value="other"> Non
-    </div>
-
-    <div class="question" data-color="red">
-      <h3>10. Je cherche toujours à atteindre mes objectifs.</h3>
-      <input type="radio" name="q10" value="red" required> Oui<br>
-      <input type="radio" name="q10" value="other"> Non
-    </div>
-
-    <div class="question" data-color="yellow">
-      <h3>11. J’aime motiver les autres.</h3>
-      <input type="radio" name="q11" value="yellow" required> Oui<br>
-      <input type="radio" name="q11" value="other"> Non
-    </div>
-
-    <div class="question" data-color="yellow">
-      <h3>12. J’ai souvent des idées créatives.</h3>
-      <input type="radio" name="q12" value="yellow" required> Oui<br>
-      <input type="radio" name="q12" value="other"> Non
-    </div>
-
-    <div class="question" data-color="yellow">
-      <h3>13. J’aime travailler en groupe et collaborer.</h3>
-      <input type="radio" name="q13" value="yellow" required> Oui<br>
-      <input type="radio" name="q13" value="other"> Non
-    </div>
-
-    <div class="question" data-color="yellow">
-      <h3>14. Je suis enthousiaste et dynamique.</h3>
-      <input type="radio" name="q14" value="yellow" required> Oui<br>
-      <input type="radio" name="q14" value="other"> Non
-    </div>
-
-    <div class="question" data-color="yellow">
-      <h3>15. J’aime explorer de nouvelles idées.</h3>
-      <input type="radio" name="q15" value="yellow" required> Oui<br>
-      <input type="radio" name="q15" value="other"> Non
-    </div>
-
-    <div class="question" data-color="yellow">
-      <h3>16. Je préfère des environnements amusants et énergétiques.</h3>
-      <input type="radio" name="q16" value="yellow" required> Oui<br>
-      <input type="radio" name="q16" value="other"> Non
-    </div>
-
-    <div class="question" data-color="yellow">
-      <h3>17. Je suis optimiste même dans les moments difficiles.</h3>
-      <input type="radio" name="q17" value="yellow" required> Oui<br>
-      <input type="radio" name="q17" value="other"> Non
-    </div>
-
-    <div class="question" data-color="yellow">
-      <h3>18. Je suis à l’aise pour parler en public.</h3>
-      <input type="radio" name="q18" value="yellow" required> Oui<br>
-      <input type="radio" name="q18" value="other"> Non
-    </div>
-
-    <div class="question" data-color="yellow">
-      <h3>19. J’aime inspirer les autres avec mon énergie.</h3>
-      <input type="radio" name="q19" value="yellow" required> Oui<br>
-      <input type="radio" name="q19" value="other"> Non
-    </div>
-
-    <div class="question" data-color="yellow">
-      <h3>20. Je suis souvent perçu comme sociable et extraverti.</h3>
-      <input type="radio" name="q20" value="yellow" required> Oui<br>
-      <input type="radio" name="q20" value="other"> Non
-    </div>
-
-    <div class="question" data-color="green">
-      <h3>21. Je privilégie la coopération et évite les conflits.</h3>
-      <input type="radio" name="q21" value="green" required> Oui<br>
-      <input type="radio" name="q21" value="other"> Non
-    </div>
-
-    <div class="question" data-color="green">
-      <h3>22. J’écoute attentivement les autres avant de parler.</h3>
-      <input type="radio" name="q22" value="green" required> Oui<br>
-      <input type="radio" name="q22" value="other"> Non
-    </div>
-
-    <div class="question" data-color="green">
-      <h3>23. Je cherche à maintenir l’harmonie dans les relations.</h3>
-      <input type="radio" name="q23" value="green" required> Oui<br>
-      <input type="radio" name="q23" value="other"> Non
-    </div>
-
-    <div class="question" data-color="green">
-      <h3>24. Je suis patient et empathique.</h3>
-      <input type="radio" name="q24" value="green" required> Oui<br>
-      <input type="radio" name="q24" value="other"> Non
-    </div>
-
-    <div class="question" data-color="green">
-      <h3>25. Je préfère des environnements calmes et stables.</h3>
-      <input type="radio" name="q25" value="green" required> Oui<br>
-      <input type="radio" name="q25" value="other"> Non
-    </div>
-
-    <div class="question" data-color="green">
-      <h3>26. Je suis loyal envers mes amis et collègues.</h3>
-      <input type="radio" name="q26" value="green" required> Oui<br>
-      <input type="radio" name="q26" value="other"> Non
-    </div>
-
-    <div class="question" data-color="green">
-      <h3>27. Je m’assure que tout le monde se sente inclus.</h3>
-      <input type="radio" name="q27" value="green" required> Oui<br>
-      <input type="radio" name="q27" value="other"> Non
-    </div>
-
-    <div class="question" data-color="green">
-      <h3>28. Je préfère éviter les changements brusques.</h3>
-      <input type="radio" name="q28" value="green" required> Oui<br>
-      <input type="radio" name="q28" value="other"> Non
-    </div>
-
-    <div class="question" data-color="green">
-      <h3>29. Je suis à l’aise dans un rôle de soutien.</h3>
-      <input type="radio" name="q29" value="green" required> Oui<br>
-      <input type="radio" name="q29" value="other"> Non
-    </div>
-
-    <div class="question" data-color="green">
-      <h3>30. Je valorise les relations à long terme.</h3>
-      <input type="radio" name="q30" value="green" required> Oui<br>
-      <input type="radio" name="q30" value="other"> Non
-    </div>
-
-    <div class="question" data-color="blue">
-      <h3>31. J’aime analyser les détails avant d’agir.</h3>
-      <input type="radio" name="q31" value="blue" required> Oui<br>
-      <input type="radio" name="q31" value="other"> Non
-    </div>
-
-    <div class="question" data-color="blue">
-      <h3>32. J’apprécie les processus bien organisés.</h3>
-      <input type="radio" name="q32" value="blue" required> Oui<br>
-      <input type="radio" name="q32" value="other"> Non
-    </div>
-
-    <div class="question" data-color="blue">
-      <h3>33. Je suis méticuleux et attentif aux détails.</h3>
-      <input type="radio" name="q33" value="blue" required> Oui<br>
-      <input type="radio" name="q33" value="other"> Non
-    </div>
-
-    <div class="question" data-color="blue">
-      <h3>34. Je préfère des approches logiques et structurées.</h3>
-      <input type="radio" name="q34" value="blue" required> Oui<br>
-      <input type="radio" name="q34" value="other"> Non
-    </div>
-
-    <div class="question" data-color="blue">
-      <h3>35. Je respecte les règles et les procédures.</h3>
-      <input type="radio" name="q35" value="blue" required> Oui<br>
-      <input type="radio" name="q35" value="other"> Non
-    </div>
-
-    <div class="question" data-color="blue">
-      <h3>36. Je suis à l’aise avec les chiffres et les faits.</h3>
-      <input type="radio" name="q36" value="blue" required> Oui<br>
-      <input type="radio" name="q36" value="other"> Non
-    </div>
-
-    <div class="question" data-color="blue">
-      <h3>37. Je préfère réfléchir longuement avant de décider.</h3>
-      <input type="radio" name="q37" value="blue" required> Oui<br>
-      <input type="radio" name="q37" value="other"> Non
-    </div>
-
-    <div class="question" data-color="blue">
-      <h3>38. Je suis souvent perçu comme réfléchi et méthodique.</h3>
-      <input type="radio" name="q38" value="blue" required> Oui<br>
-      <input type="radio" name="q38" value="other"> Non
-    </div>
-
-    <div class="question" data-color="blue">
-      <h3>39. J’aime travailler dans un environnement ordonné.</h3>
-      <input type="radio" name="q39" value="blue" required> Oui<br>
-      <input type="radio" name="q39" value="other"> Non
-    </div>
-
-    <div class="question" data-color="blue">
-      <h3>40. Je cherche toujours à atteindre la perfection.</h3>
-      <input type="radio" name="q40" value="blue" required> Oui<br>
-      <input type="radio" name="q40" value="other"> Non
-    </div>
-
-    <div class="question" data-color="red">
-      <h3>41. Je préfère les solutions rapides même si elles ne sont pas parfaites.</h3>
-      <input type="radio" name="q41" value="red" required> Oui<br>
-      <input type="radio" name="q41" value="other"> Non
-    </div>
-
-    <div class="question" data-color="red">
-      <h3>42. Je prends des décisions même si elles sont impopulaires.</h3>
-      <input type="radio" name="q42" value="red" required> Oui<br>
-      <input type="radio" name="q42" value="other"> Non
-    </div>
-
-    <div class="question" data-color="yellow">
-      <h3>43. J’aime apporter de l’énergie positive à mon équipe.</h3>
-      <input type="radio" name="q43" value="yellow" required> Oui<br>
-      <input type="radio" name="q43" value="other"> Non
-    </div>
-
-    <div class="question" data-color="yellow">
-      <h3>44. Je préfère les discussions animées plutôt que silencieuses.</h3>
-      <input type="radio" name="q44" value="yellow" required> Oui<br>
-      <input type="radio" name="q44" value="other"> Non
-    </div>
-
-    <div class="question" data-color="green">
-      <h3>45. Je m’assure que tout le monde soit entendu dans une discussion.</h3>
-      <input type="radio" name="q45" value="green" required> Oui<br>
-      <input type="radio" name="q45" value="other"> Non
-    </div>
-
-    <div class="question" data-color="green">
-      <h3>46. Je suis toujours prêt à aider les autres.</h3>
-      <input type="radio" name="q46" value="green" required> Oui<br>
-      <input type="radio" name="q46" value="other"> Non
-    </div>
-
-    <div class="question" data-color="blue">
-      <h3>47. J’aime approfondir les sujets que je ne comprends pas.</h3>
-      <input type="radio" name="q47" value="blue" required> Oui<br>
-      <input type="radio" name="q47" value="other"> Non
-    </div>
-
-    <div class="question" data-color="blue">
-      <h3>48. Je me sens à l’aise lorsque tout est bien organisé.</h3>
-      <input type="radio" name="q48" value="blue" required> Oui<br>
-      <input type="radio" name="q48" value="other"> Non
-    </div>
-
-    <div class="question" data-color="red">
-      <h3>47. Je n’hésite pas à prendre des risques calculés.</h3>
-      <input type="radio" name="q47" value="red" required> Oui<br>
-      <input type="radio" name="q47" value="other"> Non
-    </div>
-
-    <div class="question" data-color="red">
-      <h3>48. Je suis très compétitif dans tout ce que je fais.</h3>
-      <input type="radio" name="q48" value="red" required> Oui<br>
-      <input type="radio" name="q48" value="other"> Non
-    </div>
-
-    <div class="question" data-color="yellow">
-      <h3>49. Je suis à l’aise dans des environnements sociaux bruyants.</h3>
-      <input type="radio" name="q49" value="yellow" required> Oui<br>
-      <input type="radio" name="q49" value="other"> Non
-    </div>
-
-    <div class="question" data-color="yellow">
-      <h3>50. Je motive souvent les autres avec mon enthousiasme.</h3>
-      <input type="radio" name="q50" value="yellow" required> Oui<br>
-      <input type="radio" name="q50" value="other"> Non
-    </div>
-
-    <div class="question" data-color="green">
-      <h3>51. Je suis calme même sous pression.</h3>
-      <input type="radio" name="q51" value="green" required> Oui<br>
-      <input type="radio" name="q51" value="other"> Non
-    </div>
-
-    <div class="question" data-color="green">
-      <h3>52. Je préfère éviter les conflits dans toutes les situations.</h3>
-      <input type="radio" name="q52" value="green" required> Oui<br>
-      <input type="radio" name="q52" value="other"> Non
-    </div>
-
-    <div class="question" data-color="blue">
-      <h3>53. Je préfère une approche méthodique pour résoudre des problèmes.</h3>
-      <input type="radio" name="q53" value="blue" required> Oui<br>
-      <input type="radio" name="q53" value="other"> Non
-    </div>
-
-    <div class="question" data-color="blue">
-      <h3>54. Je prends le temps de vérifier les détails avant de conclure.</h3>
-      <input type="radio" name="q54" value="blue" required> Oui<br>
-      <input type="radio" name="q54" value="other"> Non
-    </div>
-    
+    <button type="submit">Voir mes résultats</button>
   </form>
 
-  <button type="submit">Voir mes résultats</button>
+  <div class="section">
+    <h3>6. Dans des situations tendues, je suis...</h3>
+    <input type="radio" name="q6" value="red" required> A. Proactif et orienté vers la solution.<br>
+    <input type="radio" name="q6" value="green"> B. Diplomate et calme.<br>
+    <input type="radio" name="q6" value="blue"> C. Réfléchi et analytique.<br>
+    <input type="radio" name="q6" value="yellow"> D. Positif et encourageant.<br>
+  </div>
+
+  <div class="section">
+    <h3>7. Quand je fixe un objectif, je suis...</h3>
+    <input type="radio" name="q7" value="red" required> A. Déterminé à réussir quoi qu’il arrive.<br>
+    <input type="radio" name="q7" value="green"> B. Soucieux que tout le monde soit satisfait.<br>
+    <input type="radio" name="q7" value="blue"> C. Précis et méthodique dans ma démarche.<br>
+    <input type="radio" name="q7" value="yellow"> D. Enthousiaste et inspirant.<br>
+  </div>
+
+  <div class="section">
+    <h3>8. Mon approche du changement est...</h3>
+    <input type="radio" name="q8" value="red" required> A. Rapide et décisive.<br>
+    <input type="radio" name="q8" value="green"> B. Prudente et collaborative.<br>
+    <input type="radio" name="q8" value="blue"> C. Bien planifiée et réfléchie.<br>
+    <input type="radio" name="q8" value="yellow"> D. Flexible et optimiste.<br>
+  </div>
+
+  <div class="section">
+    <h3>9. Face à une tâche complexe, je suis...</h3>
+    <input type="radio" name="q9" value="red" required> A. Axé sur l’efficacité et les résultats.<br>
+    <input type="radio" name="q9" value="green"> B. Enclin à demander l’avis des autres.<br>
+    <input type="radio" name="q9" value="blue"> C. Attentif aux détails et à l’exactitude.<br>
+    <input type="radio" name="q9" value="yellow"> D. Créatif et innovant dans ma démarche.<br>
+  </div>
+
+  <div class="section">
+    <h3>10. Dans mes relations, je privilégie...</h3>
+    <input type="radio" name="q10" value="red" required> A. La clarté et la franchise.<br>
+    <input type="radio" name="q10" value="green"> B. La compréhension et l’empathie.<br>
+    <input type="radio" name="q10" value="blue"> C. La cohérence et la fiabilité.<br>
+    <input type="radio" name="q10" value="yellow"> D. L’amusement et la stimulation.<br>
+  </div>
+
+  <div class="section">
+    <h3>11. Mon style de leadership est...</h3>
+    <input type="radio" name="q11" value="red" required> A. Direct et orienté vers les résultats.<br>
+    <input type="radio" name="q11" value="green"> B. Soutenant et centré sur l’équipe.<br>
+    <input type="radio" name="q11" value="blue"> C. Organisé et structuré.<br>
+    <input type="radio" name="q11" value="yellow"> D. Inspirant et visionnaire.<br>
+  </div>
+
+  <div class="section">
+    <h3>12. Quand je travaille sous pression, je suis...</h3>
+    <input type="radio" name="q12" value="red" required> A. Rapide et efficace.<br>
+    <input type="radio" name="q12" value="green"> B. Patient et collaboratif.<br>
+    <input type="radio" name="q12" value="blue"> C. Concentré et méthodique.<br>
+    <input type="radio" name="q12" value="yellow"> D. Positif et motivant.<br>
+  </div>
+
+  <div class="section">
+    <h3>13. Je mesure le succès en fonction de...</h3>
+    <input type="radio" name="q13" value="red" required> A. Mes résultats et accomplissements.<br>
+    <input type="radio" name="q13" value="green"> B. L’impact positif sur les autres.<br>
+    <input type="radio" name="q13" value="blue"> C. L’exactitude et la qualité.<br>
+    <input type="radio" name="q13" value="yellow"> D. Les nouvelles opportunités créées.<br>
+  </div>
+
+  <div class="section">
+    <h3>14. Mes collègues diraient que je suis...</h3>
+    <input type="radio" name="q14" value="red" required> A. Confiant et déterminé.<br>
+    <input type="radio" name="q14" value="green"> B. Serviable et attentionné.<br>
+    <input type="radio" name="q14" value="blue"> C. Fiable et précis.<br>
+    <input type="radio" name="q14" value="yellow"> D. Enthousiaste et charismatique.<br>
+  </div>
+
+  <div class="section">
+    <h3>15. Quand je dois résoudre un problème, je...</h3>
+    <input type="radio" name="q15" value="red" required> A. Agis rapidement pour trouver une solution.<br>
+    <input type="radio" name="q15" value="green"> B. Consulte les autres pour collaborer.<br>
+    <input type="radio" name="q15" value="blue"> C. Analyse toutes les options possibles.<br>
+    <input type="radio" name="q15" value="yellow"> D. Trouve des idées nouvelles et originales.<br>
+  </div>
 
   <div class="results" id="results">
     <h2>Vos résultats :</h2>
@@ -382,7 +163,7 @@
     document.getElementById("personalityTest").addEventListener("submit", function(event) {
       event.preventDefault();
 
-      // Collect responses
+      // Collecter les réponses
       const formData = new FormData(event.target);
       const scores = { red: 0, yellow: 0, green: 0, blue: 0 };
 
@@ -392,12 +173,12 @@
         }
       });
 
-      // Determine dominant and secondary colors
+      // Trouver les couleurs dominante et secondaire
       const sortedColors = Object.entries(scores).sort((a, b) => b[1] - a[1]);
       const dominantColor = sortedColors[0][0];
       const secondaryColor = sortedColors[1][0];
 
-      // Display results
+      // Afficher les résultats
       document.getElementById("dominantColor").textContent = dominantColor;
       document.getElementById("secondaryColor").textContent = secondaryColor;
       document.getElementById("results").style.display = "block";
