@@ -272,43 +272,6 @@
       <input type="radio" name="q40" value="other"> Non
     </div>
 
-    <button type="submit">Voir mes résultats</button>
-  </form>
-
-  <div class="results" id="results">
-    <h2>Vos résultats :</h2>
-    <p>Votre couleur dominante est : <span class="color" id="dominantColor"></span></p>
-    <p>Votre couleur secondaire est : <span class="color" id="secondaryColor"></span></p>
-  </div>
-
-  <script>
-    document.getElementById("personalityTest").addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      // Collect responses
-      const formData = new FormData(event.target);
-      const scores = { red: 0, yellow: 0, green: 0, blue: 0 };
-
-      formData.forEach((value) => {
-        if (scores[value] !== undefined) {
-          scores[value]++;
-        }
-      });
-
-      // Determine dominant and secondary colors
-      const sortedColors = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-      const dominantColor = sortedColors[0][0];
-      const secondaryColor = sortedColors[1][0];
-
-      // Display results
-      document.getElementById("dominantColor").textContent = dominantColor;
-      document.getElementById("secondaryColor").textContent = secondaryColor;
-      document.getElementById("results").style.display = "block";
-    });
-  </script>
-</body>
-</html>
-
     <div class="question" data-color="red">
       <h3>41. Je préfère les solutions rapides même si elles ne sont pas parfaites.</h3>
       <input type="radio" name="q41" value="red" required> Oui<br>
@@ -404,3 +367,41 @@
       <input type="radio" name="q54" value="blue" required> Oui<br>
       <input type="radio" name="q54" value="other"> Non
     </div>
+    
+  </form>
+
+  <button type="submit">Voir mes résultats</button>
+
+  <div class="results" id="results">
+    <h2>Vos résultats :</h2>
+    <p>Votre couleur dominante est : <span class="color" id="dominantColor"></span></p>
+    <p>Votre couleur secondaire est : <span class="color" id="secondaryColor"></span></p>
+  </div>
+
+  <script>
+    document.getElementById("personalityTest").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      // Collect responses
+      const formData = new FormData(event.target);
+      const scores = { red: 0, yellow: 0, green: 0, blue: 0 };
+
+      formData.forEach((value) => {
+        if (scores[value] !== undefined) {
+          scores[value]++;
+        }
+      });
+
+      // Determine dominant and secondary colors
+      const sortedColors = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      const dominantColor = sortedColors[0][0];
+      const secondaryColor = sortedColors[1][0];
+
+      // Display results
+      document.getElementById("dominantColor").textContent = dominantColor;
+      document.getElementById("secondaryColor").textContent = secondaryColor;
+      document.getElementById("results").style.display = "block";
+    });
+  </script>
+</body>
+</html>
