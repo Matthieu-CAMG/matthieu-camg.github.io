@@ -241,13 +241,19 @@
         <button class="close-button" onclick="closeModal()">&times;</button>
         <h2>Règles du Jeu</h2>
         <ul class="rules-list">
-            <li>Si une boule de l'adversaire est rentrée : l'adversaire joue simple.</li>
-            <li>Si une boule de l'adversaire est touchée avant sa boule : l'adversaire joue 2 fois.</li>
-            <li>Si le joueur bénéficie de 2 coups et qu'il rentre une boule, il ne joue que 2 fois, sauf s'il rentre une boule.</li>
-            <li>Celui qui rentre la noire sans être à la fin perd.</li>
-            <li>Celui qui rentre la noire et la blanche en fin de partie perd.</li>
-            <li>Celui qui rentre la noire en direct perd.</li>
-            <li>En fin de partie, la noire doit être rentrée dans le dernier trou ou la dernière boule a été rentrée</li>
+            <li>Casse :</li>
+            <li>Si le boule 8 est rentrée sur la casse : Casse invalide (on remet en place et on recasse)</li>
+            <li>Si moins de 4 boules ont touché les bandes : Casse invalide (on remet en place et l'adversaire recasse)</li>
+            <li>Si on rentre une boule sur la casse : La table reste ouverte (n'importe quelle couleur peut encore être jouée jusqu'à ce qu'un des joueurs rentre la boule)</li>
+            <li>Dans le jeu :</li>
+            <li>Si un joueur touche en premier la boule de l'adversaire: Faute de jeu (le joueur adverse, prend la boule blanche en main et la place où il le souhaite, mais un seul coup)</li>
+            <li>Si un joueur rentre une boule de l'adversaire en ayant touché une de ces boules avant: Faute (la main passe à l'autre joueur mais pas deux coup ni placement de la boule blanche)</li>
+            <li>Si un joueur touche la boule noire en premier: Faute de jeu (le joueur adverse, prend la boule blanche en main et la place où il le souhaite, mais un seul coup)</li>
+            <li>Si un joueur ne touche pas de boule: Faute de jeu (le joueur adverse, prend la boule blanche en main et la place où il le souhaite, mais un seul coup)</li>
+            <li>Si un joueur rentre la boule noire: partie perdue</li>
+            <li>Pour finir la partie, le joueur doit réaliser une bande avec la boule noire, sans que celle soit une bande proche du trou (coins)</li>
+            <li>Si la noire et la blanche sont rentrées en même temps, le joueur perd</li>
+            <li>Un match ne peut-être refusé si les deux joueurs sont présents et que les conditions permettent le jeu</li>
         </ul>
     </div>
 </div>
